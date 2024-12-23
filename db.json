@@ -1,0 +1,29 @@
+{
+    "products": {
+        "1": {
+            "id": 1,
+            "name": "Apple iPhone 14 Pro Max 128GB 5G",
+            "price": "R$11.000"
+        },
+        "2": {
+            "id": 2,
+            "name": "Apple Watch Series 9 GPS Caixa Meia-noite de",
+            "price": "2.600"
+        },
+        "3": {
+            "id": 3,
+            "name": "Apple AirPods Pro",
+            "price": "R$1.500"
+        },
+        "4": {
+            "id": 4,
+            "name": "Samsung Galaxy S21 Ultra 5G",
+            "price": "R$10.000"
+        },
+        "5": {
+            "id": 5,
+            "name": "Samsung Galaxy Watch7",
+            "price": "R$2.500"
+        }
+    }
+}
