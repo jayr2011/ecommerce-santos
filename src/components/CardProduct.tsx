@@ -1,28 +1,48 @@
-import { Card } from "flowbite-react";
+import { Card, Spinner, Button, Tooltip } from "flowbite-react";
+import { ProductTypes } from "../types/ProductsTypes";
+import { useContext } from "react";
+import { ProductsContext } from "../context/productsContext";
+import { SliderContext } from "../context/SliderContext";
+import { Link } from "react-router-dom";
 
-export default function CardProduct(): JSX.Element {
+export default function Component() {
+  const { products, loading, error } = useContext(ProductsContext);
+  const { toggleOpen, toggleSlider } = useContext(SliderContext);
+
+  if (loading) {
+    return <Spinner className="size-12 text-cyan-700" />;
+  }
+
+  if (error) {
+    return <p className="text-red-500">Algo deu errado</p>;
+  }
+
+
+
   return (
-    <Card
-      className="max-w-sm"
-      imgAlt="Apple iPhone 14 Pro Max 128GB 5G"
-      imgSrc="https://raw.githubusercontent.com/hdpngworld/HPW/main/uploads/65038654434d0-iPhone%2015%20Pro%20Natural%20titanium%20png.png"
-    >
-      <a href="#">
-        <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            Apple iPhone 14 Pro Max 128GB 5G
-        </h5>
-      </a>
-      <div className="mb-5 mt-2.5 flex items-center">
-      </div>
-      <div className="flex items-center">
-        <span className="text-3xl font-bold text-gray-900 dark:text-white">R$11.000</span>
-        <a
-          href="#"
-          className="ml-2 rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-        >
-          Adicionar ao Carrinho
+    <div className="flex flex-col justify-start gap-5 sm:grid sm:grid-flow-row sm:grid-cols-4 sm:items-start sm:gap-4">
+      {products.map((product: ProductTypes, key) => (
+        <Card
+        key={key}
+        className="max-w-sm justify-between sm:h-[500px]"
+        imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
+        imgSrc={product.image}
+      >
+        <a href="#">
+        <Link to={`/product/${product.id}`}>
+            <h5 className="flex justify-center text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+              {product.name}
+            </h5>
+        </Link>
         </a>
-      </div>
-    </Card>
+        <div className="flex flex-col items-center gap-5">
+          <span className="text-3xl font-bold text-gray-900 dark:text-white">{product.price}</span>
+            <Tooltip content="Adicione o item ao carrinho">
+              <Button onClick={() => toggleSlider(!toggleOpen)}>Carrinho</Button>
+            </Tooltip>
+        </div>
+      </Card>
+      ))}
+    </div>
   );
 }

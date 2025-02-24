@@ -1,4 +1,4 @@
-export default function AboutPage(): JSX.Element {
+export default function AboutPage() {
     return (
         <div>
             <div className="flex flex-col items-center justify-center">

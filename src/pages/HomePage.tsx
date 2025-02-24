@@ -7,7 +7,7 @@ export default function HomePage(): JSX.Element {
             <div>
                 <CarouselComponent />
             </div>
-            <div className="mt-6">
+            <div className="p-2 sm:p-6">
                 <CardProduct />
             </div>
         </div>
